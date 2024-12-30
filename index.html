@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SSE Example</title>
+  </head>
+  <body>
+    <h1>Server-Sent Events</h1>
+    <ul id="events"></ul>
+
+    <script>
+      // client-side JS
+      const source = new EventSource("/random");
+
+      source.addEventListener("message", (event) => {
+        console.log("RECEIVED", event.data);
+
+        const newElement = document.createElement("li");
+        newElement.textContent = event.data;
+        document.getElementById("events").appendChild(newElement);
+      });
+    </script>
+  </body>
+</html>
